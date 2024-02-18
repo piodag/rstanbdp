@@ -1,0 +1,39 @@
+Package: rstanbdp
+Title: Bayesian Deming Regression for Method Comparison
+Version: 0.0.1
+Maintainer: Giorgio Pioda <gfwp@ticino.com>
+Authors@R: 
+    person("Giorgio", "Pioda", ,"gfwp@ticino.com",
+    role = c("aut","cre"), comment=c(ORCID="0000-0002-8714-8678"))
+Description: Bayesian Deming (robust) Regression. Regressions methods
+    to quantify the relation between two measurement methods. This package
+    focus is on a Bayesian Deming regressions family. With a Bayesian
+    method the Deming regression can be run in a traditional fashion or
+    can be run in a robust way just decreasing the d.f. of the sampling
+    distribution. With d.f = 1 an extremely robust Cauchy distribution
+    can be sampled. Moreover, models for dealing with heteroscedastic data
+    are also provided.
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Biarch: true
+Depends: 
+    R (>= 3.4.0)
+Imports: 
+    methods,
+    Rcpp (>= 0.12.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    rstantools (>= 2.4.0),
+    rrcov,
+    mixtools,
+    bayestestR
+LinkingTo: 
+    BH (>= 1.66.0),
+    Rcpp (>= 0.12.0),
+    RcppEigen (>= 0.3.3.3.0),
+    RcppParallel (>= 5.0.1),
+    rstan (>= 2.18.1),
+    StanHeaders (>= 2.18.0)
+SystemRequirements: GNU make
