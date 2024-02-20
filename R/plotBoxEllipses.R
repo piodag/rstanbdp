@@ -14,7 +14,7 @@
 ##
 ###############################################################################
 
-#' Plot regression posterior pairs
+#' Plot regression posterior pairs with CI Box and MD ellipses
 #' @export
 #' @param bdpreg bdpreg object created with bdpreg
 #' @param cov.method rrcov covariance method ("SDe", "MCD", or "Classical"). Default MCD.
