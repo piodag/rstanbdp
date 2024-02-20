@@ -17,14 +17,17 @@
 #' Bayesian Deming regression (informative Prior) with Stan
 #'
 #' @export
-#' @param stanRegr bdpreg object
+#' @param bdpreg bdpreg object
 #' @param Xval Reference method data
 #' @param ci Probability for the HDI credibility interval. Default 0.95.
-#' @param ... Arguments passed to `rstan::sampling` (e.g. iter, chains).
+#' @param ... Arguments passed to `hist` (e.g. breaks, xlim, ...).
 #' @return no return
 #'
 
-bdpCalcResponse<-function(stanRegr,Xval,ci=0.95,...){
+bdpCalcResponse<-function(bdpreg,Xval,ci=0.95,...){
+
+  stanRegr <- bdpreg$out
+  #dat <- bdpreg$standata
 
 
   extr_r <- rstan::extract(stanRegr,pars=c("intercept","slope"))

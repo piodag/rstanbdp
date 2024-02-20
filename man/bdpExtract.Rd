@@ -4,16 +4,10 @@
 \alias{bdpExtract}
 \title{Extract relevant data from the Bayesian Deming regression}
 \usage{
-bdpExtract(stanRegr, X, Y, ErrorRatio = 1)
+bdpExtract(bdpreg)
 }
 \arguments{
-\item{stanRegr}{bdpreg object}
-
-\item{X}{Reference method data}
-
-\item{Y}{Testing method data}
-
-\item{ErrorRatio}{Deming variance ratio. Default = 1.}
+\item{bdpreg}{bdpreg object created with bdpreg}
 }
 \value{
 A data frame with extracted data

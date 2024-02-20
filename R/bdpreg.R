@@ -80,7 +80,7 @@
 #' @param BetaTruncMin Lin. heterosc. slope normal prior truncation min. Default -1.
 #' @param BetaTruncMax  Lin. heterosc. slope normal prior truncation min. Default 1.
 #' @param ... Arguments passed to `rstan::sampling` (e.g. iter, chains)
-#' @return An object of class `stanfit` returned by `rstan::sampling`
+#' @return An object of class `bdpreg`  which contains `out` a `stanfit` object returned by `rstan::sampling` and `standata` as list of input parameters.
 #' @examples
 #'library(rstanbdp)
 #'data(glycHem)
@@ -89,21 +89,23 @@
 #'fit.1 <-bdpreg(glycHem$Method1,glycHem$Method2,heteroscedastic="homo",
 #'               df=10,chain=1,iter=1000)
 #'
-#'# Results
-#'print(fit.1,digits_summary = 4)
+#'# Print results
+#'bdpPrint(fit.1,digits_summary = 4)
 #'
 #'# Plot 2D intercepts /slopes pairs with CI and MD distance
-#'plotBE(fit.1,cov.method="MCD")
+#'bdpPlotBE(fit.1,cov.method="MCD",ci=0.95)
 #'
 #'# Plot regression with CI
-#'bdpPlot(fit.1,glycHem$Method1,glycHem$Method2)
+#'bdpPlot(fit.1,ci=0.95)
 #'
 #'# Calculate response, plot histogram and CI
 #'bdpCalcResponse(fit.1,Xval = 6)
 #'
 #'# Extract Xhat, Yhat and Residuals
-#'bdpExtract(fit.1,glycHem$Method1,glycHem$Method2,ErrorRatio=1)
+#'bdpExtract(fit.1)
 #'
+#'# Plot a traceplot of the sampled chains
+#'bdpTraceplot(fit.1)
 
 bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
                    heteroscedastic = c("homo","linear"),
@@ -134,7 +136,8 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
   if(!is.null(df)){df = df} else {df = nrow(dat) - 2 }
   stopifnot(df >= 1)
 
-  standata <- list(X = dat[,1], Y = dat[,2], N = nrow(dat), df = df, ErrorRatio = ErrorRatio,
+  standata <- list(X = dat[,1], Y = dat[,2], N = nrow(dat), df = df, trunc = trunc,
+                   ErrorRatio = ErrorRatio, heteroscedastic = heteroscedastic,
                    slopeMu = slopeMu, slopeSigma = slopeSigma,
                    slopeTruncMin = slopeTruncMin, slopeTruncMax = slopeTruncMax,
                    interceptMu = interceptMu, interceptSigma = interceptSigma,
@@ -146,21 +149,18 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
   if (heteroscedastic == "linear") {
     if (trunc == TRUE){
       out <- rstan::sampling(stanmodels$bdpreg_linhettrunc, data = standata, ...)
-      return(out)
     } else {
       out <- rstan::sampling(stanmodels$bdpreg_linhet, data = standata, ...)
-      return(out)
     }
   } else {
-
   if (trunc == TRUE){
     out <- rstan::sampling(stanmodels$bdpreg_homotrunc, data = standata, ...)
-    return(out)
   }else{
     out <- rstan::sampling(stanmodels$bdpreg_homo, data = standata, ...)
-    return(out)
   }
   }
 
-
+  ret<-list(out=out,standata=standata)
+  attr(ret,"class") <- "bdpreg"
+  return(ret)
 }

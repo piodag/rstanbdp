@@ -4,14 +4,10 @@
 \alias{bdpPlot}
 \title{Plot Bayesian Deming Regression}
 \usage{
-bdpPlot(stanRegr, X, Y, ci = 0.95)
+bdpPlot(bdpreg, ci = 0.95)
 }
 \arguments{
-\item{stanRegr}{Rstan bdpreg object to plot}
-
-\item{X}{Reference method data}
-
-\item{Y}{Testing method data}
+\item{bdpreg}{bdpreg object created with bdpreg}
 
 \item{ci}{Probability for the HDI credibility interval. Default 0.95}
 }

@@ -17,26 +17,27 @@
 #' Plot Bayesian Deming Regression
 #'
 #' @export
-#' @param stanRegr Rstan bdpreg object to plot
-#' @param X Reference method data
-#' @param Y Testing method data
+#' @param bdpreg bdpreg object created with bdpreg
 #' @param ci Probability for the HDI credibility interval. Default 0.95
 #' @return no return
 #'
 
-bdpPlot<-function(stanRegr,X,Y,ci=0.95){
+bdpPlot <- function(bdpreg,ci=0.95){
+
+  stanRegr <- bdpreg$out
+  dat <- bdpreg$standata
 
   extr_r <- rstan::extract(stanRegr,pars=c("intercept","slope"))
   coef.ab<-rstan::summary(stanRegr)$summary[,1]
 
-  if (names(coef.ab[4]) == "Beta") {
+  if (dat$heteroscedastic == "linear") {
     heteroscedastic.text <- "Linear heteroscedastic model with n="
   }else{
     heteroscedastic.text <- "Homoscedastic model with n="
   }
 
-  data <- cbind(X,Y)
-  dat <- as.data.frame(na.omit(data))
+  #data <- cbind(X,Y)
+  #dat <- as.data.frame(na.omit(data))
 
   plot(dat$X,dat$Y,xlab="X",ylab="Y")
 
@@ -65,7 +66,7 @@ bdpPlot<-function(stanRegr,X,Y,ci=0.95){
   legend("bottomright",legend=c("Regression","Identity"),
          lty=c(1,2),lwd=c(2,1),col=c("blue","red"))
 
-  mtext(paste0(heteroscedastic.text,nrow(dat)," data points. \n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
+  mtext(paste0(heteroscedastic.text,dat$N," data points. \n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
               abs(signif(coef.ab["intercept"],5))),
         side=3, line=-2,adj=0.1,font=1)
 

@@ -73,7 +73,7 @@ See \code{slopeTruncMin}.}
 \item{...}{Arguments passed to \code{rstan::sampling} (e.g. iter, chains)}
 }
 \value{
-An object of class \code{stanfit} returned by \code{rstan::sampling}
+An object of class \code{bdpreg}  which contains \code{out} a \code{stanfit} object returned by \code{rstan::sampling} and \code{standata} as list of input parameters.
 }
 \description{
 \code{bdpreg} is used to compare two measurement methods by means of a Bayesian regression analysis.
@@ -123,19 +123,21 @@ data(glycHem)
 fit.1 <-bdpreg(glycHem$Method1,glycHem$Method2,heteroscedastic="homo",
               df=10,chain=1,iter=1000)
 
-# Results
-print(fit.1,digits_summary = 4)
+# Print results
+bdpPrint(fit.1,digits_summary = 4)
 
 # Plot 2D intercepts /slopes pairs with CI and MD distance
-plotBE(fit.1,cov.method="MCD")
+bdpPlotBE(fit.1,cov.method="MCD",ci=0.95)
 
 # Plot regression with CI
-bdpPlot(fit.1,glycHem$Method1,glycHem$Method2)
+bdpPlot(fit.1,ci=0.95)
 
 # Calculate response, plot histogram and CI
 bdpCalcResponse(fit.1,Xval = 6)
 
 # Extract Xhat, Yhat and Residuals
-bdpExtract(fit.1,glycHem$Method1,glycHem$Method2,ErrorRatio=1)
+bdpExtract(fit.1)
 
+# Plot a traceplot of the sampled chains
+bdpTraceplot(fit.1)
 }

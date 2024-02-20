@@ -4,16 +4,16 @@
 \alias{bdpCalcResponse}
 \title{Bayesian Deming regression (informative Prior) with Stan}
 \usage{
-bdpCalcResponse(stanRegr, Xval, ci = 0.95, ...)
+bdpCalcResponse(bdpreg, Xval, ci = 0.95, ...)
 }
 \arguments{
-\item{stanRegr}{bdpreg object}
+\item{bdpreg}{bdpreg object}
 
 \item{Xval}{Reference method data}
 
 \item{ci}{Probability for the HDI credibility interval. Default 0.95.}
 
-\item{...}{Arguments passed to \code{rstan::sampling} (e.g. iter, chains).}
+\item{...}{Arguments passed to \code{hist} (e.g. breaks, xlim, ...).}
 }
 \value{
 no return

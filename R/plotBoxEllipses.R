@@ -16,12 +16,15 @@
 
 #' Plot regression posterior pairs
 #' @export
-#' @param stanRegr Rstan rstanbdp object
+#' @param bdpreg bdpreg object created with bdpreg
 #' @param cov.method rrcov covariance method ("SDe", "MCD", or "Classical"). Default MCD.
 #' @param ci Probability for the HDI credibility interval. Default 0.95.
 #' @return no return
 
-plotBE<-function(stanRegr,cov.method="MCD",ci=0.95){
+bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
+
+  stanRegr <- bdpreg$out
+  #dat <- bdpreg$standata
 
   extr.pairs <- rstan::extract(stanRegr,pars=c("intercept","slope"))
   extr.pairs <- data.frame(B0=extr.pairs$intercept,B1=extr.pairs$slope)
