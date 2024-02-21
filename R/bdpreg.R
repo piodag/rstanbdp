@@ -79,7 +79,7 @@
 #' @param BetaSigma Lin. heterosc. slope normal prior. Default 0.5.
 #' @param BetaTruncMin Lin. heterosc. slope normal prior truncation min. Default -1.
 #' @param BetaTruncMax  Lin. heterosc. slope normal prior truncation min. Default 1.
-#' @param ... Arguments passed to `rstan::sampling` (e.g. iter, chains)
+#' @param ... Arguments passed to `rstan::sampling` (e.g. `iter`, `chains`)
 #' @return An object of class `bdpreg`  which contains `out` a `stanfit` object returned by `rstan::sampling` and `standata` as list of input parameters.
 #' @examples
 #'library(rstanbdp)
@@ -106,6 +106,10 @@
 #'
 #'# Plot a traceplot of the sampled chains
 #'bdpTraceplot(fit.1)
+#'
+#'# Plot standardized residuals
+#'bdpPlotResiduals(fit.1)
+#'
 
 bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
                    heteroscedastic = c("homo","linear"),

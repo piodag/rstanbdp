@@ -16,7 +16,7 @@ devtools::install_github("piodag/rstanbdp/tree/devel")
 
 ```
 
-Alternatively the stable varsion is available from [GitHub](https://github.com/piodag/rstanbdp) with:
+Alternatively the stable version is available from [GitHub](https://github.com/piodag/rstanbdp) with:
 
 ``` r
 # install.packages("devtools")

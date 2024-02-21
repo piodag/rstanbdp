@@ -70,7 +70,7 @@ See \code{slopeTruncMin}.}
 
 \item{BetaTruncMax}{Lin. heterosc. slope normal prior truncation min. Default 1.}
 
-\item{...}{Arguments passed to \code{rstan::sampling} (e.g. iter, chains)}
+\item{...}{Arguments passed to \code{rstan::sampling} (e.g. \code{iter}, \code{chains})}
 }
 \value{
 An object of class \code{bdpreg}  which contains \code{out} a \code{stanfit} object returned by \code{rstan::sampling} and \code{standata} as list of input parameters.

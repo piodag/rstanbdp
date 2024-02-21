@@ -13,7 +13,7 @@ bdpCalcResponse(bdpreg, Xval, ci = 0.95, ...)
 
 \item{ci}{Probability for the HDI credibility interval. Default 0.95.}
 
-\item{...}{Arguments passed to \code{hist} (e.g. breaks, xlim, ...).}
+\item{...}{Arguments passed to \code{hist} (e.g. \code{breaks}, \code{xlim}, ...).}
 }
 \value{
 no return

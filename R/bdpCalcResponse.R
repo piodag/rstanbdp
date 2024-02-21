@@ -20,7 +20,7 @@
 #' @param bdpreg bdpreg object
 #' @param Xval Reference method data
 #' @param ci Probability for the HDI credibility interval. Default 0.95.
-#' @param ... Arguments passed to `hist` (e.g. breaks, xlim, ...).
+#' @param ... Arguments passed to `hist` (e.g. `breaks`, `xlim`, ...).
 #' @return no return
 #'
 
