@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotBoxEllipses.R
 \name{bdpPlotBE}
 \alias{bdpPlotBE}
-\title{Plot regression posterior pairs}
+\title{Plot regression posterior pairs with CI Box and MD ellipses}
 \usage{
 bdpPlotBE(bdpreg, cov.method = "MCD", ci = 0.95)
 }
@@ -17,5 +17,5 @@ bdpPlotBE(bdpreg, cov.method = "MCD", ci = 0.95)
 no return
 }
 \description{
-Plot regression posterior pairs
+Plot regression posterior pairs with CI Box and MD ellipses
 }

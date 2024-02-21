@@ -29,12 +29,6 @@ bdpExtract <- function(bdpreg){
   extr_r <- rstan::extract(stanRegr,pars=c("intercept","slope"))
   coef.ab<-rstan::summary(stanRegr)$summary[,1]
 
-  #if (dat$heteroscedastic == "linear") {
-  #  heteroscedastic <- "linear"
-  #}else{
-  #  heteroscedastic <- "homo"
-  #}
-
   mX <- mean(dat$X)
   mY <- mean(dat$Y)
 

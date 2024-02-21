@@ -5,14 +5,14 @@ Maintainer: Giorgio Pioda <gfwp@ticino.com>
 Authors@R: 
     person("Giorgio", "Pioda", ,"gfwp@ticino.com",
     role = c("aut","cre"), comment=c(ORCID="0000-0002-8714-8678"))
-Description: Bayesian Deming (robust) Regression. Regressions methods
-    to quantify the relation between two measurement methods. This package
+Description: Regression methods to quantify the relation 
+    between two measurement methods are provided by this package. The
     focus is on a Bayesian Deming regressions family. With a Bayesian
     method the Deming regression can be run in a traditional fashion or
     can be run in a robust way just decreasing the d.f. of the sampling
-    distribution. With d.f = 1 an extremely robust Cauchy distribution
-    can be sampled. Moreover, models for dealing with heteroscedastic data
-    are also provided.
+    distribution. With degree of freedom d.f = 1 an extremely robust
+    Cauchy distribution can be sampled. Moreover, models for dealing
+    with heteroscedastic data are also provided.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

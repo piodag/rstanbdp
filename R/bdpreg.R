@@ -130,7 +130,7 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
 
   data <- cbind(X,Y)
   dat <- na.omit(data)
-  if(nrow(data)>nrow(dat)){cat(paste("Some NA removed, data set contains",nrow(dat),"valid pairs"))}
+  if(nrow(data)>nrow(dat)){warning(paste("Some NA removed, data set contains",nrow(dat),"valid pairs"))}
 
   stopifnot(ErrorRatio > 0)
   if(!is.null(df)){df = df} else {df = nrow(dat) - 2 }
