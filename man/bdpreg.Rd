@@ -140,4 +140,11 @@ bdpExtract(fit.1)
 
 # Plot a traceplot of the sampled chains
 bdpTraceplot(fit.1)
+
+# Plot standardized residuals
+bdpPlotResiduals(fit.1)
+
+}
+\references{
+G. Pioda (2014) \url{https://piodag.github.io/bd1/}
 }

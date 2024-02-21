@@ -81,6 +81,7 @@
 #' @param BetaTruncMax  Lin. heterosc. slope normal prior truncation min. Default 1.
 #' @param ... Arguments passed to `rstan::sampling` (e.g. `iter`, `chains`)
 #' @return An object of class `bdpreg`  which contains `out` a `stanfit` object returned by `rstan::sampling` and `standata` as list of input parameters.
+#' @references G. Pioda (2014) <https://piodag.github.io/bd1/>
 #' @examples
 #'library(rstanbdp)
 #'data(glycHem)
