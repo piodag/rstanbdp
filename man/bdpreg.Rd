@@ -144,6 +144,8 @@ bdpTraceplot(fit.1)
 # Plot standardized residuals
 bdpPlotResiduals(fit.1)
 
+# Plot posterior samples pairwise
+bdpPairs(fit.1)
 }
 \references{
 G. Pioda (2014) \url{https://piodag.github.io/bd1/}

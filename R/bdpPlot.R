@@ -14,7 +14,7 @@
 ##
 ###############################################################################
 
-#' Plot Bayesian Deming Regression
+#' Plot Bayesian Deming Regression and the confidence intervals from the full posterior distribution
 #'
 #' @export
 #' @param bdpreg bdpreg object created with bdpreg

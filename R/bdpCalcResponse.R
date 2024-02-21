@@ -14,7 +14,7 @@
 ##
 ###############################################################################
 
-#' Bayesian Deming regression (informative Prior) with Stan
+#' Plot the calculated Y response with CI from the full Bayesian posterior distribution
 #'
 #' @export
 #' @param bdpreg bdpreg object

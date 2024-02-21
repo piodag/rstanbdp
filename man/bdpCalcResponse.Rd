@@ -2,7 +2,7 @@
 % Please edit documentation in R/bdpCalcResponse.R
 \name{bdpCalcResponse}
 \alias{bdpCalcResponse}
-\title{Bayesian Deming regression (informative Prior) with Stan}
+\title{Plot the calculated Y response with CI from the full Bayesian posterior distribution}
 \usage{
 bdpCalcResponse(bdpreg, Xval, ci = 0.95, ...)
 }
@@ -19,5 +19,5 @@ bdpCalcResponse(bdpreg, Xval, ci = 0.95, ...)
 no return
 }
 \description{
-Bayesian Deming regression (informative Prior) with Stan
+Plot the calculated Y response with CI from the full Bayesian posterior distribution
 }

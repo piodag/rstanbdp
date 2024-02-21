@@ -2,7 +2,7 @@
 % Please edit documentation in R/bdpPlot.R
 \name{bdpPlot}
 \alias{bdpPlot}
-\title{Plot Bayesian Deming Regression}
+\title{Plot Bayesian Deming Regression and the confidence intervals from the full posterior distribution}
 \usage{
 bdpPlot(bdpreg, ci = 0.95)
 }
@@ -15,5 +15,5 @@ bdpPlot(bdpreg, ci = 0.95)
 no return
 }
 \description{
-Plot Bayesian Deming Regression
+Plot Bayesian Deming Regression and the confidence intervals from the full posterior distribution
 }

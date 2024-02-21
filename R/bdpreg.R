@@ -111,6 +111,8 @@
 #'# Plot standardized residuals
 #'bdpPlotResiduals(fit.1)
 #'
+#'# Plot posterior samples pairwise
+#'bdpPairs(fit.1)
 
 bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
                    heteroscedastic = c("homo","linear"),
