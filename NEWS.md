@@ -1,6 +1,17 @@
-## version 0.0.1
+## version 0.0.2
 
 ---
+
+### Object oriented structure of the package
+
+- bdpreg object created. Functions adapted to S3 objects.
+- warning() vs cat() fix.
+- Minor fixes.
+
+
+## version 0.0.1
+
+- Release version numbering changed
 
 
 ### Initial release
