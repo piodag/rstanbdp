@@ -29,7 +29,8 @@ Imports:
     rstantools (>= 2.4.0),
     rrcov,
     mixtools,
-    bayestestR
+    bayestestR,
+    KernSmooth
 LinkingTo: 
     BH (>= 1.66.0),
     Rcpp (>= 0.12.0),
