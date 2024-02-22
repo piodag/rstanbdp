@@ -37,7 +37,6 @@ bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
     het.text <- "Homoscedastic model"
   }
 
-    par(mfrow=c(1,1))
 
     minAlfa<-ifelse(min(extr.pairs$B0) > -0.1, -0.1, min(extr.pairs$B0))
     maxAlfa<-ifelse(max(extr.pairs$B0) < 0.1, 0.1, max(extr.pairs$B0))
