@@ -81,4 +81,6 @@ bdpPlot <- function(bdpreg,ci=0.95,...){
 
   title(paste("Plot of the Bayesian Deming regression"))
 
+  grid()
+
 }

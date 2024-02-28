@@ -67,4 +67,6 @@ bdpPlotResiduals <- function(bdpreg,...){
          col=c("black","blue","purple"),lty=2:4,
          horiz = T)
 
+  grid()
+
 }
