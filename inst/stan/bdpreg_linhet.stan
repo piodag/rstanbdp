@@ -28,6 +28,7 @@ data {
   int<lower=0> df; // respose variable size
   vector[N] X; // predictor vector
   vector[N] Y;  // response vector
+  vector[N] avgXY;
 
    // Priors tweaking
   real slopeMu;
@@ -71,14 +72,12 @@ model {
   vector[N] HatX;
   vector[N] HatY;
   vector[N] Opti;
-  vector[N] Avg;
 
 
      Pred = X * slope + intercept;
      Dis = Y-Pred;
      HatX = X+(ErrorRatio*Dis*slope/(1+ErrorRatio*slope^2));
      HatY = Y-(Dis/(1+ErrorRatio*slope^2));
-     Avg = (X + Y)/2;
 
      for (n in 1:N) {
 
@@ -92,7 +91,7 @@ model {
   Alpha ~ normal(AlphaMu,AlphaSigma) T[0,]; // prior intercept for the heteroscedastic variance intercept
   Beta ~ normal(BetaMu,BetaSigma) T[BetaTruncMin,BetaTruncMax]; // prior slope for the heteroscedastic variance slope
 
-  Opti ~ student_t(df,0, Alpha + Beta * Avg );
+  Opti ~ student_t(df,0, Alpha + Beta * avgXY );
 
 }
 
