@@ -145,7 +145,7 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
   if(!is.null(df)){df = df} else {df = nrow(dat) - 2 }
   stopifnot(df >= 1)
 
-  avgXY <- (dat[,1] * ErrorRatio + dat[,2]) / (1 + ErrorRatio)
+  avgXY <- (dat[,1] +  ErrorRatio * dat[,2]) / (1 + ErrorRatio)
 
   standata <- list(X = dat[,1], Y = dat[,2], avgXY = avgXY, N = nrow(dat), df = df, trunc = trunc,
                    ErrorRatio = ErrorRatio, heteroscedastic = heteroscedastic,
