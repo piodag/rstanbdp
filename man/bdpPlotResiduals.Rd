@@ -4,10 +4,12 @@
 \alias{bdpPlotResiduals}
 \title{Plot studentized residuals from the Bayesian Deming regression}
 \usage{
-bdpPlotResiduals(bdpreg)
+bdpPlotResiduals(bdpreg, ...)
 }
 \arguments{
 \item{bdpreg}{bdpreg object created with bdpreg}
+
+\item{...}{Arguments passed to \code{plot} (e.g. \code{xlim}, \code{xlab}, \code{main})}
 }
 \value{
 no return

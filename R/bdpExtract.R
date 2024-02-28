@@ -39,7 +39,7 @@ bdpExtract <- function(bdpreg){
   Xres <- dat$X-Xhat
   Yres <- dat$Y-Yhat
 
-  avgXY = (dat$X+dat$Y)/2
+  avgXY = dat$avgXY
 
   OptRes <- sqrt(Xres^2+Yres^2)*sign(Yres)
 
@@ -50,6 +50,13 @@ bdpExtract <- function(bdpreg){
                       Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, linSigma = Sigma,
                       OptStandardRes = OptRes/Sigma))
 
+  } else if (dat$heteroscedastic == "exponential"){
+
+    Sigma <- coef.ab[3]*exp(coef.ab[4]*avgXY)
+
+    return(data.frame(X = dat$X, Y = dat$Y, avgXY = (dat$X+dat$Y)/2, diffXY = dat$Y-dat$X,
+                      Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, linSigma = Sigma,
+                      OptStandardRes = OptRes/Sigma))
   } else {
 
     return( data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X,

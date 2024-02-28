@@ -42,7 +42,8 @@ See \code{slopeTruncMin}.}
 
 \item{heteroscedastic}{Bayesian Deming model choice. Alternatives are:
 \code{"homo"} - Homoscedastic model. Default.\cr
-\code{"linear"} - Heteroscedastic with linear growth of the variance. Highly experimental model.\cr}
+\code{"linear"} - Heteroscedastic with linear growth of the variance. Highly experimental model.\cr
+\code{"exponential"} - Heteroscedastic with exponential growth of the variance. Highly experimental model.\cr}
 
 \item{slopeMu}{Slope normal Mu prior value. Default 1.}
 

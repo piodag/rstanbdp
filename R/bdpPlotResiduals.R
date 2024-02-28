@@ -18,19 +18,22 @@
 #'
 #' @export
 #' @param bdpreg bdpreg object created with bdpreg
+#' @param ... Arguments passed to `plot` (e.g. `xlim`, `xlab`, `main`)
 #' @return no return
 #'
 
-bdpPlotResiduals <- function(bdpreg){
+bdpPlotResiduals <- function(bdpreg,...){
 
   extr <- bdpExtract(bdpreg)
 
   dat<-bdpreg$standata
 
   if(dat$heteroscedastic == "linear") {
-    d.text <- "Heteroscedastic linear model"
+    d.text <- "Heteroscedastic linear model with n = "
+  }else if (dat$heteroscedastic == "exponential"){
+    d.text <- "Heteroscedastic exponential model with n = "
   }else{
-      d.text <- "Homoscedastic linear model"
+      d.text <- "Homoscedastic linear model with n = "
     }
 
   ymin <- qt(0.0001,df=dat$N-2)
@@ -57,9 +60,11 @@ bdpPlotResiduals <- function(bdpreg){
 
   abline(h=qt(c(0.001,0.999),df=dat$N-2),col="purple",lty=4)
 
-  mtext(paste0(d.text),
-        side=3, line=-1,adj=0.1,font=1)
+  mtext(paste0(d.text,dat$N," and d.f. = ",dat$df),
+        side=3, line=-1,adj=0.02,font=1)
 
-  legend("topright",legend=c("95%","99%","99.9%"),col=c("black","blue","purple"),lty=2:4)
+  legend("bottomleft",legend=c("95%","99%","99.9%"),
+         col=c("black","blue","purple"),lty=2:4,
+         horiz = T)
 
 }

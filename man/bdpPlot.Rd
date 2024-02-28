@@ -4,12 +4,14 @@
 \alias{bdpPlot}
 \title{Plot Bayesian Deming regression and the confidence intervals from the full posterior distribution}
 \usage{
-bdpPlot(bdpreg, ci = 0.95)
+bdpPlot(bdpreg, ci = 0.95, ...)
 }
 \arguments{
 \item{bdpreg}{bdpreg object created with bdpreg}
 
 \item{ci}{Probability for the HDI credibility interval. Default 0.95}
+
+\item{...}{Arguments passed to \code{plot} (e.g. \code{xlim}, \code{xlab}, \code{main})}
 }
 \value{
 no return

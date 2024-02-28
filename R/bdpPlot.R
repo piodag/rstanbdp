@@ -19,10 +19,11 @@
 #' @export
 #' @param bdpreg bdpreg object created with bdpreg
 #' @param ci Probability for the HDI credibility interval. Default 0.95
+#' @param ... Arguments passed to `plot` (e.g. `xlim`, `xlab`, `main`)
 #' @return no return
 #'
 
-bdpPlot <- function(bdpreg,ci=0.95){
+bdpPlot <- function(bdpreg,ci=0.95,...){
 
   stanRegr <- bdpreg$out
   dat <- bdpreg$standata
@@ -32,14 +33,16 @@ bdpPlot <- function(bdpreg,ci=0.95){
 
   if (dat$heteroscedastic == "linear") {
     heteroscedastic.text <- "Linear heteroscedastic model with n="
-  }else{
+  } else if (dat$heteroscedastic == "exponential") {
+    heteroscedastic.text <- "Exponential heteroscedastic model with n="
+  } else {
     heteroscedastic.text <- "Homoscedastic model with n="
   }
 
   #data <- cbind(X,Y)
   #dat <- as.data.frame(na.omit(data))
 
-  plot(dat$X,dat$Y,xlab="X",ylab="Y")
+  plot(dat$X,dat$Y,xlab="X",ylab="Y",...)
 
   abline(a=coef.ab["intercept"],b=coef.ab["slope"],col="blue",lwd=2)
   abline(a=0,b=1,col="red",lty=2)
@@ -66,7 +69,7 @@ bdpPlot <- function(bdpreg,ci=0.95){
   legend("bottomright",legend=c("Regression","Identity"),
          lty=c(1,2),lwd=c(2,1),col=c("blue","red"))
 
-  mtext(paste0(heteroscedastic.text,dat$N," data points. \n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
+  mtext(paste0(heteroscedastic.text,dat$N," data points and d.f = ",dat$df,"\n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
               abs(signif(coef.ab["intercept"],5))),
         side=3, line=-2,adj=0.1,font=1)
 

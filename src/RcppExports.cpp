@@ -12,12 +12,14 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 
+RcppExport SEXP _rcpp_module_boot_stan_fit4bdpreg_exphettrunc_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4bdpreg_homo_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4bdpreg_homotrunc_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4bdpreg_linhet_mod();
 RcppExport SEXP _rcpp_module_boot_stan_fit4bdpreg_linhettrunc_mod();
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_rcpp_module_boot_stan_fit4bdpreg_exphettrunc_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4bdpreg_exphettrunc_mod, 0},
     {"_rcpp_module_boot_stan_fit4bdpreg_homo_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4bdpreg_homo_mod, 0},
     {"_rcpp_module_boot_stan_fit4bdpreg_homotrunc_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4bdpreg_homotrunc_mod, 0},
     {"_rcpp_module_boot_stan_fit4bdpreg_linhet_mod", (DL_FUNC) &_rcpp_module_boot_stan_fit4bdpreg_linhet_mod, 0},

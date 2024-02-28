@@ -24,19 +24,20 @@
 bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
 
   stanRegr <- bdpreg$out
-  #dat <- bdpreg$standata
+  dat <- bdpreg$standata
 
   extr.pairs <- rstan::extract(stanRegr,pars=c("intercept","slope"))
   extr.pairs <- data.frame(B0=extr.pairs$intercept,B1=extr.pairs$slope)
 
   coef.ab<-rstan::summary(stanRegr)$summary[,1]
 
-  if (names(coef.ab[4]) == "Beta") {
+  if (dat$heteroscedastic == "linear") {
     het.text <- "Linear heteroscedastic model"
-  }else{
+  } else if (dat$heteroscedastic == "exponential") {
+    het.text <- "Exponential heteroscedastic model"
+  } else {
     het.text <- "Homoscedastic model"
   }
-
 
     minAlfa<-ifelse(min(extr.pairs$B0) > -0.1, -0.1, min(extr.pairs$B0))
     maxAlfa<-ifelse(max(extr.pairs$B0) < 0.1, 0.1, max(extr.pairs$B0))
@@ -101,17 +102,21 @@ bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
     mtext(paste(cov.method,"center \n","intercept:",
                 signif(t.mcd$center[1],5),"\n slope:",
                 signif(t.mcd$center[2],5)),
-          side=1, line=-4,adj=0.1,font=1)
+          side=1, line=-3,
+          adj=0.02,
+          font=1)
 
-    mtext(paste("Chisq. p-value, 2 d.f.: ",signif(res.p,4)),side=1, line=-2,adj=0.1,font=1)
+    mtext(paste("Chisq. p-value, 2 d.f.: ",signif(res.p,4)),side=1,
+          line=-1,adj=0.02,font=1)
 
-    mtext(paste0(het.text,"\n Results, HDi-CI ",signif(ci,3)*100,"%\n",
+    mtext(paste0(het.text,", HDi-CI ",signif(ci,3)*100,"%\n",
                 "intercept: ",signif(as.numeric(med.cx),5)," [",signif(as.numeric(res.cx[2]),5) ,";",signif(as.numeric(res.cx[3]),5) ,"] \n",
                 "slope: ",signif(as.numeric(med.cy),5)," [",signif(as.numeric(res.cy[2]),5),";",signif(as.numeric(res.cy[3]),5),"]"),
-          side=3, line=-4,adj=0.1,font=1)
+          side=3, line=-3,adj=0.02,font=1)
 
     legend("topright",legend=c("e95%","e99%",paste0("HDI-CI ",signif(ci,3)*100,"%")),
-           lty=c(1,2,3),lwd=c(1,1,2),col=c("blue","blue","purple"))
+           lty=c(1,2,3),lwd=c(1,1,2),col=c("blue","blue","purple"),
+           title=paste0("n = ",dat$N, ", d.f = ",dat$df) )
 
     title(paste("Box & ellipses of the Bayesian samples with",text.label,"covariance"))
 }

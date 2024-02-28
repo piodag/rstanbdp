@@ -66,6 +66,7 @@
 #' @param heteroscedastic Bayesian Deming model choice. Alternatives are:
 #'          \code{"homo"} - Homoscedastic model. Default.\cr
 #'          \code{"linear"} - Heteroscedastic with linear growth of the variance. Highly experimental model.\cr
+#'          \code{"exponential"} - Heteroscedastic with exponential growth of the variance. Highly experimental model.\cr
 #' @param slopeMu Slope normal Mu prior value. Default 1.
 #' @param slopeSigma Slope normal Sigma prior value. Default 0.3.
 #' @param slopeTruncMin slope normal lower truncation limit. Default 0.3333.
@@ -131,7 +132,8 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
   if (missing(heteroscedastic) ) {
     heteroscedastic <- "homo"
   }
-  if((heteroscedastic == "homo") | (heteroscedastic == "linear")){
+
+  if(heteroscedastic %in% c("homo","linear","exponential")){
        heteroscedastic <- heteroscedastic
   }else{ heteroscedastic <-"homo"}
 
@@ -160,16 +162,16 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
       out <- rstan::sampling(stanmodels$bdpreg_linhettrunc, data = standata, ...)
     } else {
       out <- rstan::sampling(stanmodels$bdpreg_linhet, data = standata, ...)
-    }
-  } else if (heteroscedastic == "linear"){
+      }
+} else if (heteroscedastic == "exponential"){
     out <- rstan::sampling(stanmodels$bdpreg_exphettrunc, data = standata, ...)
-  } else {
+} else {
   if (trunc == TRUE){
     out <- rstan::sampling(stanmodels$bdpreg_homotrunc, data = standata, ...)
   }else{
     out <- rstan::sampling(stanmodels$bdpreg_homo, data = standata, ...)
   }
-  }
+}
 
   ret<-list(out=out,standata=standata)
   attr(ret,"class") <- "bdpreg"
