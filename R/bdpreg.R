@@ -145,7 +145,7 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
 
   avgXY <- (dat[,1] * ErrorRatio + dat[,2]) / (1 + ErrorRatio)
 
-  standata <- list(X = dat[,1], Y = dat[,2], N = nrow(dat), df = df, trunc = trunc,
+  standata <- list(X = dat[,1], Y = dat[,2], avgXY = avgXY, N = nrow(dat), df = df, trunc = trunc,
                    ErrorRatio = ErrorRatio, heteroscedastic = heteroscedastic,
                    slopeMu = slopeMu, slopeSigma = slopeSigma,
                    slopeTruncMin = slopeTruncMin, slopeTruncMax = slopeTruncMax,
