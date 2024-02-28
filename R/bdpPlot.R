@@ -32,11 +32,11 @@ bdpPlot <- function(bdpreg,ci=0.95,...){
   coef.ab<-rstan::summary(stanRegr)$summary[,1]
 
   if (dat$heteroscedastic == "linear") {
-    heteroscedastic.text <- "Linear heteroscedastic model with n="
+    heteroscedastic.text <- "Linear heteroscedastic model"
   } else if (dat$heteroscedastic == "exponential") {
-    heteroscedastic.text <- "Exponential heteroscedastic model with n="
+    heteroscedastic.text <- "Exponential heteroscedastic model"
   } else {
-    heteroscedastic.text <- "Homoscedastic model with n="
+    heteroscedastic.text <- "Homoscedastic model"
   }
 
   #data <- cbind(X,Y)
@@ -67,9 +67,10 @@ bdpPlot <- function(bdpreg,ci=0.95,...){
   #lines(xvall$X,pred_h[,2],col="blue",lty=2)
 
   legend("bottomright",legend=c("Regression","Identity"),
-         lty=c(1,2),lwd=c(2,1),col=c("blue","red"))
+         lty=c(1,2),lwd=c(2,1),col=c("blue","red"),
+         title=paste0("n = ",dat$N,", d.f. = ",dat$df))
 
-  mtext(paste0(heteroscedastic.text,dat$N," data points and d.f = ",dat$df,"\n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
+  mtext(paste0(heteroscedastic.text,"\n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
               abs(signif(coef.ab["intercept"],5))),
         side=3, line=-2,adj=0.1,font=1)
 
