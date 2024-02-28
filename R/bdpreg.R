@@ -60,7 +60,7 @@
 #' @param Y Numeric vector of output values.
 #' @param trunc Boolean. Default TRUE. Use truncated slope prior for stability with extreme ErrorRatios.
 #' See \code{slopeTruncMin}.
-#' @param ErrorRatio Deming variance ratio. Default = 1.
+#' @param ErrorRatio Deming variance ratio between reference and test method. Default = 1.
 #' @param df Degree of freedom. Must be df >= 1 (robust Cauchy regression). Default is \eqn{N-2}, For robust
 #' regression set it to \eqn{df < N-2}
 #' @param heteroscedastic Bayesian Deming model choice. Alternatives are:

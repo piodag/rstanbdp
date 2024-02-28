@@ -32,7 +32,7 @@ bdpreg(
 
 \item{Y}{Numeric vector of output values.}
 
-\item{ErrorRatio}{Deming variance ratio. Default = 1.}
+\item{ErrorRatio}{Deming variance ratio between reference and test method. Default = 1.}
 
 \item{df}{Degree of freedom. Must be df >= 1 (robust Cauchy regression). Default is \eqn{N-2}, For robust
 regression set it to \eqn{df < N-2}}

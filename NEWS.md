@@ -1,3 +1,16 @@
+## version 0.0.3
+
+---
+
+### Added exponential error structure
+
+- option exponential added
+
+### Fixes
+
+- Average X,Y value weighted with variance. Fix for ErrorRatio different from 1.
+
+
 ## version 0.0.2
 
 ---

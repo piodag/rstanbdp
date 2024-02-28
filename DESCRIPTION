@@ -1,6 +1,6 @@
 Package: rstanbdp
 Title: Bayesian Deming Regression for Method Comparison
-Version: 0.0.2
+Version: 0.0.3
 Maintainer: Giorgio Pioda <gfwp@ticino.com>
 Authors@R: 
     person("Giorgio", "Pioda", ,"gfwp@ticino.com",
