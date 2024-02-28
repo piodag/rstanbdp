@@ -91,7 +91,7 @@ model {
   Alpha ~ normal(AlphaMu,AlphaSigma) T[0,]; // half normal prior for the heteroscedastic variance (intercept)
   Beta ~ normal(BetaMu,BetaSigma) T[BetaTruncMin,BetaTruncMax]; // prior slope for the heteroscedastic (variance slope)
 
-  Opti ~ student_t(df,0, Alpha + Beta * avgXY );
+  Opti ~ student_t(df,0, Alpha * exp(Beta * avgXY));
 
 }
 

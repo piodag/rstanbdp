@@ -161,6 +161,8 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
     } else {
       out <- rstan::sampling(stanmodels$bdpreg_linhet, data = standata, ...)
     }
+  } else if (heteroscedastic == "linear"){
+    out <- rstan::sampling(stanmodels$bdpreg_exphettrunc, data = standata, ...)
   } else {
   if (trunc == TRUE){
     out <- rstan::sampling(stanmodels$bdpreg_homotrunc, data = standata, ...)
