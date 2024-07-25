@@ -72,14 +72,14 @@ bdpPlot <- function(bdpreg,ci=0.95,...){
 
   mtext(paste0(heteroscedastic.text,"\n y = ",signif(coef.ab["slope"],5),"*x",ifelse(coef.ab["intercept"] > 0,"+","-"),
               abs(signif(coef.ab["intercept"],5))),
-        side=3, line=-2,adj=0.1,font=1)
+        side=3, line=-2,adj=0.02,cex=1)
 
   mtext(paste0(signif(ci,3)*100,"% HDI-CI simulated from the full Bayesian pairs distribution"),
         side=1, line=2,
         #adj=0.1,
-        font=1)
+        cex=1)
 
-  title(paste("Plot of the Bayesian Deming regression"))
+  title(paste("Plot of the Bayesian Deming regression"),cex.main=1)
 
   grid()
 

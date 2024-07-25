@@ -4,7 +4,7 @@
 \alias{bdpPlotBE}
 \title{Plot regression posterior pairs with CI Box and MD ellipses}
 \usage{
-bdpPlotBE(bdpreg, cov.method = "MCD", ci = 0.95)
+bdpPlotBE(bdpreg, cov.method = "MCD", ci = 0.95, ...)
 }
 \arguments{
 \item{bdpreg}{bdpreg object created with bdpreg}
@@ -12,6 +12,8 @@ bdpPlotBE(bdpreg, cov.method = "MCD", ci = 0.95)
 \item{cov.method}{rrcov covariance method ("SDe", "MCD", or "Classical"). Default MCD.}
 
 \item{ci}{Probability for the HDI credibility interval. Default 0.95.}
+
+\item{...}{Arguments passed to \code{plot} (e.g. \code{xlim}, \code{xlab}, \code{main})}
 }
 \value{
 no return

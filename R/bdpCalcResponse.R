@@ -62,16 +62,17 @@ bdpCalcResponse<-function(bdpreg,Xval,ci=0.95,...){
 
   legend("topright",legend=c("Res, HDI-CI","X value"),
          lty=c(2,2),lwd=c(1,1),col=c("red","black"),
-         title=paste0("n = ",dat$N,", d.f. = ",dat$df))
+         title=paste0("n = ",dat$N,", d.f. = ",dat$df),
+         cex=1)
 
   mtext(paste0(het.text,"\n Res Y = ",signif(rstan::summary(pred_r)[4],5),"\n HDI-CI ",signif(ci,3)*100,"% \n [ ",signif(ci.hdi[2],5)," ; ",signif(ci.hdi[3],5)," ]"),
-        side=3, line=-3,adj=0.02,font=1)
+        side=3, line=-3,adj=0.02,cex=1)
 
   mtext(paste("Y predictions simulated from the full Bayesian pairs distribution"),
         side=1, line=2,
         #adj=0.1,
-        font=1)
+        cex=1)
 
-  title(paste("Histogram of the full response for X =",Xval))
+  title(paste("Histogram of the full response for X =",Xval),cex.main=1)
 
 }

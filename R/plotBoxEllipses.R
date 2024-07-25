@@ -19,9 +19,10 @@
 #' @param bdpreg bdpreg object created with bdpreg
 #' @param cov.method rrcov covariance method ("SDe", "MCD", or "Classical"). Default MCD.
 #' @param ci Probability for the HDI credibility interval. Default 0.95.
+#' @param ... Arguments passed to `plot` (e.g. `xlim`, `xlab`, `main`)
 #' @return no return
 
-bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
+bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95,...){
 
   stanRegr <- bdpreg$out
   dat <- bdpreg$standata
@@ -64,7 +65,7 @@ bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
          xlim=c(minAlfa,maxAlfa),
          ylim=c(minBeta,maxBeta),
          xlab="intercept",ylab="slope",
-         pch=16,col=rgb(0,0,0,alpha=0.1))
+         pch=16,col=rgb(0,0,0,alpha=0.1),...)
 
     points(0,1,pch=4,cex=2,col="red",lwd=3)
 
@@ -104,21 +105,22 @@ bdpPlotBE<-function(bdpreg,cov.method="MCD",ci=0.95){
                 signif(t.mcd$center[2],5)),
           side=1, line=-3,
           adj=0.02,
-          font=1)
+          cex=1)
 
     mtext(paste("Chisq. p-value, 2 d.f.: ",signif(res.p,4)),side=1,
-          line=-1,adj=0.02,font=1)
+          line=-1,adj=0.02,cex=1)
 
     mtext(paste0(het.text,", HDi-CI ",signif(ci,3)*100,"%\n",
                 "intercept: ",signif(as.numeric(med.cx),5)," [",signif(as.numeric(res.cx[2]),5) ,";",signif(as.numeric(res.cx[3]),5) ,"] \n",
                 "slope: ",signif(as.numeric(med.cy),5)," [",signif(as.numeric(res.cy[2]),5),";",signif(as.numeric(res.cy[3]),5),"]"),
-          side=3, line=-3,adj=0.02,font=1)
+          side=3, line=-3,adj=0.02,cex=1)
 
     legend("topright",legend=c("e95%","e99%",paste0("HDI-CI ",signif(ci,3)*100,"%")),
            lty=c(1,2,3),lwd=c(1,1,2),col=c("blue","blue","purple"),
-           title=paste0("n = ",dat$N, ", d.f = ",dat$df) )
+           title=paste0("n = ",dat$N, ", d.f = ",dat$df), cex=1)
 
-    title(paste("Box & ellipses of the Bayesian samples with",text.label,"covariance"))
+    title(paste("Box & ellipses of the Bayesian samples with",text.label,"covariance"),
+          cex.main=1)
 }
 
 #' Mahalanobis distance for the posterior pairs
