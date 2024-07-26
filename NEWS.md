@@ -8,7 +8,7 @@
 
 ### Fixes
 
-- Average X,Y value weighted with variance. Fix for ErrorRatio different from 1.
+- Average X,Y value weighted with variance for heteroscedastic models.
 - bdpSummary() extractor function added.
 - Graphical improvements of several plot functions.
 
