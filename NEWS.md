@@ -9,6 +9,8 @@
 ### Fixes
 
 - Average X,Y value weighted with variance. Fix for ErrorRatio different from 1.
+- bdpSummary() extractor function added.
+- Graphical improvements of several plot functions.
 
 
 ## version 0.0.2
