@@ -46,7 +46,7 @@ bdpExtract <- function(bdpreg){
   if (dat$heteroscedastic == "linear") {
     Sigma <- coef.ab[3]+coef.ab[4]*avgXY
 
-    return(data.frame(X = dat$X, Y = dat$Y, avgXY = (dat$X+dat$Y)/2, diffXY = dat$Y-dat$X,
+    return(data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X,
                       Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, linSigma = Sigma,
                       OptStandardRes = OptRes/Sigma))
 
@@ -54,9 +54,16 @@ bdpExtract <- function(bdpreg){
 
     Sigma <- coef.ab[3]*exp(coef.ab[4]*avgXY)
 
-    return(data.frame(X = dat$X, Y = dat$Y, avgXY = (dat$X+dat$Y)/2, diffXY = dat$Y-dat$X,
+    return(data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X,
                       Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, linSigma = Sigma,
                       OptStandardRes = OptRes/Sigma))
+
+  } else if (dat$heteroscedastic == "binomial"){
+
+    Sigma <- coef.ab[3]+coef.ab[4]*dat$binomError
+
+    return( data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X, dat$binomError = binomError,
+                       Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, OptStandardRes = OptRes/Sigma))
   } else {
 
     return( data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X,

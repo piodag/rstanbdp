@@ -35,6 +35,8 @@ bdpPlot <- function(bdpreg,ci=0.95,...){
     heteroscedastic.text <- "Linear heteroscedastic model"
   } else if (dat$heteroscedastic == "exponential") {
     heteroscedastic.text <- "Exponential heteroscedastic model"
+  } else if (dat$heteroscedastic == "binomial"){
+    heteroscedastic.text <- "Binomial error structure model"
   } else {
     heteroscedastic.text <- "Homoscedastic model"
   }

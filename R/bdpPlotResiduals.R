@@ -34,6 +34,8 @@ bdpPlotResiduals <- function(bdpreg,legend.pos="bottomleft",legend.horizon=TRUE,
     d.text <- "Heteroscedastic linear model with n = "
   }else if (dat$heteroscedastic == "exponential"){
     d.text <- "Heteroscedastic exponential model with n = "
+  }else if (dat$heteroscedastic == "binomial"){
+    d.text <- "Binomial error model with n = "
   }else{
       d.text <- "Homoscedastic linear model with n = "
     }

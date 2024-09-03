@@ -37,7 +37,11 @@ bdpCalcResponse<-function(bdpreg,Xval,ci=0.95,...){
     het.text <- "Linear heteroscedastic model"
   } else if (dat$heteroscedastic == "exponential") {
     het.text <- "Exponential heteroscedastic model"
-  } else {
+  } else if (dat$heteroscedastic == "binomial"){
+    het.text <- "Binomial error structure model"
+  }
+
+  else {
     het.text <- "Homoscedastic model"
   }
 

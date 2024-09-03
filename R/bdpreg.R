@@ -67,6 +67,8 @@
 #'          \code{"homo"} - Homoscedastic model. Default.\cr
 #'          \code{"linear"} - Heteroscedastic with linear growth of the variance. Highly experimental model.\cr
 #'          \code{"exponential"} - Heteroscedastic with exponential growth of the variance. Highly experimental model.\cr
+#'          \code{"binomial"} - Binomial error structure for count data comparison. Set binomNmax as needed. Highly experimental model.\cr
+#' @param binomNmax Total number of counts. The X and Y are the successful number of counts that get compared. Default 1; in this case X and Y must be proportions.
 #' @param slopeMu Slope normal Mu prior value. Default 1.
 #' @param slopeSigma Slope normal Sigma prior value. Default 0.3.
 #' @param slopeTruncMin slope normal lower truncation limit. Default 0.3333.
@@ -117,6 +119,7 @@
 
 bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
                    heteroscedastic = c("homo","linear"),
+                   binomNmax = 1,
                    slopeMu = 1, slopeSigma = 0.3,
                    slopeTruncMin = 0.3333, slopeTruncMax = 10,
                    interceptMu = 0, interceptSigma = 30,
@@ -147,7 +150,12 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
 
   avgXY <- (dat[,1] +  ErrorRatio * dat[,2]) / (1 + ErrorRatio)
 
+  if (heteroscedastic == "binomial"){
+  binomError <- sqrt(avgXY * (binomNmax - avgXY) / binomNmax )
+  } else {binomError <- rep(1,length(X))}
+
   standata <- list(X = dat[,1], Y = dat[,2], avgXY = avgXY, N = nrow(dat), df = df, trunc = trunc,
+                   binomError=binomError, binomNmax=binomNmax,
                    ErrorRatio = ErrorRatio, heteroscedastic = heteroscedastic,
                    slopeMu = slopeMu, slopeSigma = slopeSigma,
                    slopeTruncMin = slopeTruncMin, slopeTruncMax = slopeTruncMax,
@@ -165,6 +173,8 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
       }
 } else if (heteroscedastic == "exponential"){
     out <- rstan::sampling(stanmodels$bdpreg_exphettrunc, data = standata, ...)
+} else if (heteroscedastic == "binomial"){
+  out <- rstan::sampling(stanmodels$bdpreg_binomtrunc, data = standata, ...)
 } else {
   if (trunc == TRUE){
     out <- rstan::sampling(stanmodels$bdpreg_homotrunc, data = standata, ...)

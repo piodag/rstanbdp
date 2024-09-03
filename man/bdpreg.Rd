@@ -11,6 +11,7 @@ bdpreg(
   df = NULL,
   trunc = TRUE,
   heteroscedastic = c("homo", "linear"),
+  binomNmax = 1,
   slopeMu = 1,
   slopeSigma = 0.3,
   slopeTruncMin = 0.3333,
@@ -43,7 +44,10 @@ See \code{slopeTruncMin}.}
 \item{heteroscedastic}{Bayesian Deming model choice. Alternatives are:
 \code{"homo"} - Homoscedastic model. Default.\cr
 \code{"linear"} - Heteroscedastic with linear growth of the variance. Highly experimental model.\cr
-\code{"exponential"} - Heteroscedastic with exponential growth of the variance. Highly experimental model.\cr}
+\code{"exponential"} - Heteroscedastic with exponential growth of the variance. Highly experimental model.\cr
+\code{"binomial"} - Binomial error structure for count data comparison. Set binomNmax as needed. Highly experimental model.\cr}
+
+\item{binomNmax}{Total number of counts. The X and Y are the successful number of counts that get compared. Default 1; in this case X and Y must be proportions.}
 
 \item{slopeMu}{Slope normal Mu prior value. Default 1.}
 

@@ -1,3 +1,12 @@
+## version 0.0.4
+
+---
+
+### Added binomial error structure
+
+- Option binomial added
+
+
 ## version 0.0.3
 
 ---
