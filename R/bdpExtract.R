@@ -62,7 +62,7 @@ bdpExtract <- function(bdpreg){
 
     Sigma <- coef.ab[3]+coef.ab[4]*dat$binomError
 
-    return( data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X, dat$binomError = binomError,
+    return( data.frame(X = dat$X, Y = dat$Y, avgXY = avgXY, diffXY = dat$Y-dat$X, binomError = dat$binomError,
                        Xhat=Xhat, Yhat=Yhat, Xres=Xres, Yres=Yres, OptRes = OptRes, OptStandardRes = OptRes/Sigma))
   } else {
 

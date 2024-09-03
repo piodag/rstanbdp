@@ -136,7 +136,7 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
     heteroscedastic <- "homo"
   }
 
-  if(heteroscedastic %in% c("homo","linear","exponential")){
+  if(heteroscedastic %in% c("homo","linear","exponential","binomial")){
        heteroscedastic <- heteroscedastic
   }else{ heteroscedastic <-"homo"}
 
@@ -152,6 +152,7 @@ bdpreg <- function(X, Y, ErrorRatio = 1, df = NULL, trunc = TRUE,
 
   if (heteroscedastic == "binomial"){
   binomError <- sqrt(avgXY * (binomNmax - avgXY) / binomNmax )
+  if (BetaTruncMin < 0) {BetaTruncMin <- 0 }
   } else {binomError <- rep(1,length(X))}
 
   standata <- list(X = dat[,1], Y = dat[,2], avgXY = avgXY, N = nrow(dat), df = df, trunc = trunc,
